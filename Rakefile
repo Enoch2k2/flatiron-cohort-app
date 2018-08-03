@@ -13,3 +13,12 @@ task :drop do
   puts "dropping database..."
   system("rake db:drop && rake rm db/schema.rb")
 end
+
+task :reset do
+  puts "drop database..."
+  system("rake db:drop && rm db/schema.rb")
+  puts "migrating databases"
+  system("rake db:create db:migrate && rm db/schema.rb")
+  puts "running rails server"
+  system("rails s")
+end
