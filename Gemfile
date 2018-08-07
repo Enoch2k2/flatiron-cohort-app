@@ -29,7 +29,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'rspec-rails'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
-
+gem 'devise'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'bootstrap', '~> 4.1.3'
