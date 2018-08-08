@@ -5,14 +5,8 @@ FactoryBot.define do
   #   admin false
   # end
 
-  factory :user do
-    email "test@test.com"
-    password "testtest"
-  end
-
-  factory :instructor, class_name: User do
-    user
-    instructor_role
+  factory :cohort do
+    
   end
 
   # # This will use the User class (Admin would have been guessed)

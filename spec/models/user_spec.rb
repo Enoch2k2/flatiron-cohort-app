@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-    let(:student){FactoryBot.create(:user)}
+    let(:student){create(:user)}
   describe "attributes" do
     it "has a first_name" do
       student.update(first_name: "Test")

@@ -2,9 +2,13 @@ require 'rails_helper'
 
 RSpec.feature "Welcomes", type: :feature do
   describe "homepage" do
-    it "index is set to root path" do
+
+    before(:each) do
       visit root_path
-      expect(page.body).to include("Flatiron Cohorts")
+    end
+
+    it "returns a status code of 200" do
+      expect(page.status_code).to eq(200)
     end
   end
 end

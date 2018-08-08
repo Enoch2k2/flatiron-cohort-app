@@ -11,6 +11,17 @@
 
   <body>
     <%= render 'layouts/nav' %>
+    <% if flash[:error] || flash[:warning] || flash[:success] %>
+      <ul class="errors">
+        <% if flash[:error] %>
+          <li><%= flash[:error] %></li>
+        <% elsif flash[:warning] %>
+          <li><%= flash[:warning] %></li>
+        <% else %>
+          <li><%= flash[:success] %></li>
+        <% end %>
+      </ul>
+    <% end %>
     <div class="container">
       <%= yield %>
     </div>

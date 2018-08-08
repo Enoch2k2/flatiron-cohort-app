@@ -18,7 +18,7 @@ task :reset do
   puts "drop database..."
   system("rake db:drop && rm db/schema.rb")
   puts "migrating databases"
-  system("rake db:create db:migrate && rm db/schema.rb")
+  system("rake db:create db:migrate && rake db:migrate RAILS_ENV=test")
   puts "running rails server"
   system("rails s")
 end
