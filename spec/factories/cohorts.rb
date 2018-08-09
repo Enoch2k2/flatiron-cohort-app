@@ -5,8 +5,8 @@ FactoryBot.define do
   #   admin false
   # end
 
-  factory :cohort do
-    
+  factory :cohort_1, class: Cohort do
+    name "Cohort 1"
   end
 
   # # This will use the User class (Admin would have been guessed)

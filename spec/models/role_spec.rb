@@ -5,16 +5,20 @@ RSpec.describe Role, type: :model do
   let(:student_role){create(:student_role)}
   let(:admin_role){create(:admin_role)}
 
-  let(:instructor){create(:user)}
-  let(:student){create(:user)}
+  let(:instructor){create(:instructor, roles: [instructor_role, admin_role])}
+  let(:student){create(:student, roles: [student_role])}
+
 
   describe "attributes" do
     it "has a name" do
-
+      expect(instructor_role.name).to eq("Instructor")
+      expect(student_role.name).to eq("Student")
+      expect(admin_role.name).to eq("Admin")
     end
   end
 
   describe "associations" do
-    it "has many users, through user_roles"
+    it { should have_many(:user_roles) }
+    it { should have_many(:users).through(:user_roles) }
   end
 end

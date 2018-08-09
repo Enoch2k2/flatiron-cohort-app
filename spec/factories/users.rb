@@ -10,9 +10,19 @@ FactoryBot.define do
     password "testtest"
   end
 
-  factory :instructor, class_name: User do
-    user
-    instructor_role
+  factory :instructor, class: User do
+    email "test@test.com"
+    password "testtest"
+  end
+
+  factory :student, class: User do
+    email "test@test.com"
+    password "testtest"
+    first_name "Test"
+    last_name "Test"
+    slack_username "Test2k2"
+    current_lesson "Intro to HTML"
+    completed_lessons 15
   end
 
   # # This will use the User class (Admin would have been guessed)

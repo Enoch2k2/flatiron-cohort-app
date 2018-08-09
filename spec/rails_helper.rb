@@ -28,11 +28,10 @@ end
 
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
-
-  config.use_transactional_fixtures = true
-  ActiveRecord::Migration.maintain_test_schema!
-  
   config.include FactoryBot::Syntax::Methods
+
+  config.use_transactional_fixtures = false
+  
   config.before(:suite) do
     if config.use_transactional_fixtures?
       raise(<<-MSG)
