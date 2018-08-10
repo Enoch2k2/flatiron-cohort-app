@@ -17,9 +17,9 @@ ActiveRecord::Schema.define(version: 2018_08_07_192936) do
 
   create_table "cohorts", force: :cascade do |t|
     t.string "name"
+    t.integer "instructor_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "instructor_id"
   end
 
   create_table "roles", force: :cascade do |t|

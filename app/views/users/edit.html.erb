@@ -1,0 +1,18 @@
+<h2 class="hdr">Edit Account</h2>
+
+<%= form_for @user do |f| %>
+
+  <div class="field form-group">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name, autofocus: true, autocomplete: "off", class: "form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name, autocomplete: "off", class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Edit Account", class: "btn btn-primary" %>
+  </div>
+<% end %>

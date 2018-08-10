@@ -28,6 +28,7 @@ end
 
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.include Warden::Test::Helpers
   config.include FactoryBot::Syntax::Methods
 
   config.use_transactional_fixtures = false

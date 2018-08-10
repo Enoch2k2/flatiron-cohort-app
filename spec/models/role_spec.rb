@@ -6,7 +6,7 @@ RSpec.describe Role, type: :model do
   let(:admin_role){create(:admin_role)}
 
   let(:instructor){create(:instructor, roles: [instructor_role, admin_role])}
-  let(:student){create(:student, roles: [student_role])}
+  let(:student){create(:student_1, roles: [student_role])}
 
 
   describe "attributes" do

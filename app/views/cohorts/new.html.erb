@@ -1,0 +1,15 @@
+<h2 class="hdr">Create A Cohort</h2>
+
+<%= form_for [@user, @cohort] do |f| %>
+
+  <div class="field form-group">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true, autocomplete: "off", class: "form-control" %>
+  </div>
+
+  <%= f.hidden_field :instructor_id, value: @user.id %>
+
+  <div class="actions">
+    <%= f.submit "Create Cohort", class: "btn btn-primary" %>
+  </div>
+<% end %>

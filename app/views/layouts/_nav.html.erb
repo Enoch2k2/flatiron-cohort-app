@@ -1,6 +1,38 @@
 <nav class="navbar navbar navbar-expand-lg navbar-dark bg-primary">
   <%= link_to "Flatiron Cohorts", root_path, class: "navbar-brand" %>
   <ul class="nav ml-auto">
+    <% if user_signed_in? && current_user.student? %>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="student-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Student
+      </a>
+      <div class="dropdown-menu" aria-labelledby="student-dropdown">
+        <%= link_to "Profile", "#", class: "dropdown-item" %>
+      </div>
+    </li>
+    <% end %>
+    <% if user_signed_in? && current_user.instructor? %>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="instructor-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Instructor
+      </a>
+      <div class="dropdown-menu" aria-labelledby="instructor-dropdown">
+        <%= link_to "Cohorts", user_cohorts_path(current_user), class: "dropdown-item" %>
+        <%= link_to "Search Students", "#", class: "dropdown-item" %>
+      </div>
+    </li>
+    <% end %>
+    <% if user_signed_in? && current_user.admin? %>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="admin-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Admin
+      </a>
+      <div class="dropdown-menu" aria-labelledby="admin-dropdown">
+        <%= link_to "Add User", "#", class: "dropdown-item" %>
+        <%= link_to "Change User Role", "#", class: "dropdown-item" %>
+      </div>
+    </li>
+    <% end %>
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Account

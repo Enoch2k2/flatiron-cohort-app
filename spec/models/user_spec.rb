@@ -1,7 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-    let(:student){create(:student)}
+    let(:student_role){create(:student_role)}
+    let(:student){create(:student_1, roles: [student_role])}
+    let(:admin_role){create(:admin_role)}
+    let(:instructor_role){create(:instructor_role)}
+    let(:instructor){create(:instructor, roles: [admin_role, instructor_role])}
   describe "attributes" do
     it "has a first_name" do
       expect(student.first_name).to eq("Test")
@@ -27,6 +31,26 @@ RSpec.describe User, type: :model do
     it "keeps track of completed lessons" do
       expect(student.completed_lessons).to eq(15)
       expect(student.valid?).to eq(true)
+    end
+  end
+
+  describe "authorizations" do
+    it "#admin? should return true if you have a role of admin" do
+      expect(instructor.admin?).to eq(true)
+    end
+
+    it "#instructor? should return true if you have a role of instructor" do
+      expect(instructor.instructor?).to eq(true)
+    end
+
+    it "#student? should return true if you hae a role of a student" do
+      expect(student.student?).to eq(true)
+    end
+  end
+
+  describe "helpers" do
+    it "#full_name displays the first and last name of the user" do
+      expect(instructor.full_name).to eq("Bob Not Bob")
     end
   end
 
