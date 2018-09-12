@@ -1,0 +1,50 @@
+<h2 class="hdr">Create Meeting</h2>
+
+<%= form_for [@user, @cohort, @student, Meeting.new], url: user_cohort_student_meetings_path(@user, @cohort, student) do |f| %>
+
+  <div class="field form-group">
+    <%= f.label :date %><br />
+    <%= f.date_field :date, autofocus: true, autocomplete: "off", class: "form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :time %><br />
+    <%= f.text_field :time, autofocus: true, autocomplete: "off", class: "form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :current_lesson %><br />
+    <%= f.text_field :current_lesson, autofocus: true, autocomplete: "off", class: "form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :completed_lessons %><br />
+    <%= f.text_field :completed_lessons, autofocus: true, autocomplete: "off", class: "form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :struggling? %><br />
+    <%= f.check_box :struggling?, autofocus: true, autocomplete: "off", class: "form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :behind_schedule? %><br />
+    <%= f.check_box :behind_schedule?, autofocus: true, autocomplete: "off", class: "form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :knowledge_check %><br />
+    <%= f.text_field :knowledge_check, autofocus: true, autocomplete: "off", class: "form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :note %><br />
+    <%= f.text_field :note, autofocus: true, autocomplete: "off", class: "form-control" %>
+  </div>
+
+  <%= f.hidden_field :user_id, value: @student.id %>
+
+  <div class="actions">
+    <%= f.submit "Create Meeting", class: "btn btn-primary" %>
+  </div>
+<% end %>

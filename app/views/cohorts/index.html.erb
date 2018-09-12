@@ -1,16 +1,30 @@
 <div class="row">
   <div class="col-md-2">
-    <ul>
-      <li><%= link_to "Create Cohort", new_user_cohort_path(@user) %></li>
-    </ul>
+    <%= render partial: 'cohorts/sidebar', locals: {user: @user} %>
   </div>
   <div class="col-md-10">
     <h1><%= @user.full_name %>'s Cohorts</h1>
     <br/>
-    <ul>
-      <% @user.cohorts.each do |cohort| %>
-        <li><%= link_to cohort.name, "#" %></li>
-      <% end %>
-    </ul>
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Start Date</th>
+          <th scope="col">End Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @user.instructed_cohorts.each.with_index(1) do |cohort, i| %>
+          <tr>
+            <th scope="row"><%= i %></th>
+            <td class="cohort-link"><%= link_to cohort.name, user_cohort_path(@user, cohort) %></td>
+            <td><%= cohort.start_date %></td>
+            <td><%= cohort.end_date %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+        
   </div>
 </div>

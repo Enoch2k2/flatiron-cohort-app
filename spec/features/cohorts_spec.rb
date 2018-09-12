@@ -38,8 +38,20 @@ RSpec.feature "Cohorts", type: :feature do
       login_as(instructor, scope: :user)
       visit new_user_cohort_path(instructor)
       fill_in "cohort_name", with: "Alpha Beta"
+      fill_in "cohort_start_date", with: "2018-07-10"
+      fill_in "cohort_end_date", with: "2018-09-07"
       click_button "Create Cohort"
-      expect(page.body).to have_content("Alpha Beta")
+      expect(page.body).to have_link("Alpha Beta")
+      expect(page.body).to have_content("2018-07-10")
+      expect(page.body).to have_content("2018-09-07")
+    end
+  end
+
+  describe "Cohort Show Page" do
+    it "returns a 200 status code" do
+      login_as(instructor, scope: :user)
+      visit user_cohort_path(instructor, cohort_1)
+      expect(page.status_code).to eq(200)
     end
   end
 end

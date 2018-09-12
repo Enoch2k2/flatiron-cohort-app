@@ -7,6 +7,8 @@ FactoryBot.define do
 
   factory :cohort_1, class: Cohort do
     name "Cohort 1"
+    start_date Date.new(2018, 7, 15)
+    end_date Date.new(2018, 9, 7)
   end
 
   # # This will use the User class (Admin would have been guessed)

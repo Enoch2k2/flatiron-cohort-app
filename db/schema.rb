@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_07_192936) do
+ActiveRecord::Schema.define(version: 2018_09_12_143317) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,25 @@ ActiveRecord::Schema.define(version: 2018_08_07_192936) do
     t.integer "instructor_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "start_date"
+    t.date "end_date"
+  end
+
+  create_table "meetings", force: :cascade do |t|
+    t.bigint "user_id"
+    t.date "date"
+    t.string "time"
+    t.string "current_lesson"
+    t.integer "completed_lessons"
+    t.boolean "struggling"
+    t.boolean "behind_schedule"
+    t.integer "knowledge_check"
+    t.string "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "added_to_doc?"
+    t.boolean "added_to_instructor_app?"
+    t.index ["user_id"], name: "index_meetings_on_user_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -64,10 +83,12 @@ ActiveRecord::Schema.define(version: 2018_08_07_192936) do
     t.string "slack_username"
     t.string "current_lesson"
     t.integer "completed_lessons", default: 0
+    t.string "learn_profile"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "meetings", "users"
   add_foreign_key "student_cohorts", "cohorts"
   add_foreign_key "student_cohorts", "users"
   add_foreign_key "user_roles", "roles"

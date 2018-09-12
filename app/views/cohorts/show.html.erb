@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-md-2">
+    <ul class="nav nav-pills nav-stacked">
+      <li role="presentation" class="link-button"><%= link_to "Add Student", user_cohort_new_student_path(@user, @cohort), class: "link-button-a" %></li>
+      <li role="presentation" class="link-button"><%= link_to "Search Students", "#", class: "link-button-a" %></li>
+      <li role="presentation" class="link-button"><%= link_to "Assignments", "#", class: "link-button-a" %></li>
+    </ul>
+  </div>
+  <div class="col-md-10">
+    <h1><%= @cohort.name %></h1>
+    <br/>
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Student Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Slack</th>
+          <th scope="col">Learn Profile</th>
+          <th scope="col">Completed Lessons</th>
+          <th scope="col">Last Current Lessons</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @cohort.students.sort_by{|s| s.first_name}.each.with_index(1) do |student, i| %>
+          <tr>
+            <th scope="row"><%= i %></th>
+            <td class="cohort-link"><%= link_to student.full_name, user_cohort_student_path(@user, @cohort, student) %></td>
+            <td><%= student.email %></td>
+            <td><%= student.slack_username %></td>
+            <td><%= student.learn_profile ? (link_to student.learn_profile, student.learn_profile, target: :_blank) : "N/A" %></td>
+            <td><%= student.total_lessons_completed %></td>
+            <td><%= student.meetings.length > 0 ? student.meetings.sort_by{|m| m.date}.last.current_lesson : "N/A" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+        
+  </div>
+</div>

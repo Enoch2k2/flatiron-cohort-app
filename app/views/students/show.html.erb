@@ -1,0 +1,39 @@
+<h1><%= @student.full_name %></h1>
+<br/>
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" class="student-show-text-small">Notes</th>
+      <th scope="col" class="student-show-text-small">Date</th>
+      <th scope="col" class="student-show-text-small">Time</th>
+      <th scope="col" class="student-show-text-small">Current Lesson</th>
+      <th scope="col" class="student-show-text-small">Completed Lessons</th>
+      <th scope="col" class="student-show-text-small">Struggling?</th>
+      <th scope="col" class="student-show-text-small">Behind Schedule?</th>
+      <th scope="col" class="student-show-text-small">Knowledge Check</th>
+      <th scope="col" class="student-show-text-small">Note</th>
+      <th scope="col" class="student-show-text-small">Doc</th>
+      <th scope="col" class="student-show-text-small">Instructor App</th>
+      <th scope="col" class="student-show-text-small">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @student.meetings.sort_by{|meeting| meeting.date}.each.with_index(1) do |meeting, i| %>
+      <tr>
+        <td scope="col" class="student-show-text-small"><%= i %></td>
+        <td scope="col" class="student-show-text-small"><%= meeting.date %></td>
+        <td scope="col" class="student-show-text-small"><%= meeting.time %></td>
+        <td scope="col" class="student-show-text-small"><%= meeting.current_lesson %></td>
+        <td scope="col" class="student-show-text-small"><%= meeting.completed_lessons %></td>
+        <td scope="col" class="student-show-text-small"><%= meeting.struggling ? 'Yes' : 'No' %></td>
+        <td scope="col" class="student-show-text-small"><%= meeting.behind_schedule ? 'Yes' : 'No' %></td>
+        <td scope="col" class="student-show-text-small"><%= meeting.knowledge_check %></td>
+        <td scope="col" class="student-show-text-small"><%= meeting.note %></td>
+        <td scope="col" class="student-show-text-small"><%= meeting.added_to_doc? ? "Added" : link_to("Add To Docs", user_cohort_add_student_meetings_to_doc_path(@user, @cohort, @student, meeting)) %></td>
+        <td scope="col" class="student-show-text-small"><%= meeting.added_to_instructor_app? ? "Added" : link_to("Add To Instructor App", user_cohort_add_student_meetings_to_instructor_app_path(@user, @cohort, @student, meeting)) %></td>
+        <td scope="col" class="student-show-text-small"><%= link_to("Delete", user_cohort_delete_meeting_path(@user, @cohort, @student, meeting)) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= render partial: 'students/add_note', locals: {student: @student} %>        
