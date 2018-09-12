@@ -1,5 +1,6 @@
 <div class="row">
   <div class="col-md-2">
+    <h3 class="cohort-link"><%= link_to "<< Back", user_cohorts_path(@user) %></h3>
     <ul class="nav nav-pills nav-stacked">
       <li role="presentation" class="link-button"><%= link_to "Add Student", user_cohort_new_student_path(@user, @cohort), class: "link-button-a" %></li>
       <li role="presentation" class="link-button"><%= link_to "Search Students", "#", class: "link-button-a" %></li>

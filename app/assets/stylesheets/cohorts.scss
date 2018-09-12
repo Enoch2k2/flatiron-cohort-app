@@ -32,3 +32,11 @@ td.cohort-link a {
 td.cohort-link a:hover {
   color: darkblue;
 }
+
+h3.cohort-link {
+  font-size: 16px;
+}
+
+body > div > div > div.col-md-2 > h3.cohort-link > a {
+  text-decoration: none;
+}
