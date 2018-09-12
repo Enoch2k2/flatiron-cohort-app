@@ -1,0 +1,22 @@
+<h1>Cohort List</h1>
+<br/>
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Start Date</th>
+      <th scope="col">End Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% Cohort.all.each.with_index(1) do |cohort, i| %>
+      <tr>
+        <th scope="row"><%= i %></th>
+        <td class="cohort-link"><%= link_to cohort.name, admin_cohort_path(cohort) %></td>
+        <td><%= cohort.start_date %></td>
+        <td><%= cohort.end_date %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
+
+  namespace :admin do
+    get '/cohorts', to: 'cohorts#index', as: 'cohorts'
+    get '/cohorts/:id', to: 'cohorts#show', as: 'cohort'
+  end
+
   resources :users do
     resources :cohorts do
       get '/students/new', to: 'students#new', as: 'new_student'
