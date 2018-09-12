@@ -17,7 +17,7 @@
         <% @cohort.students.sort_by{|s| s.first_name}.each.with_index(1) do |student, i| %>
           <tr>
             <th scope="row"><%= i %></th>
-            <td class="cohort-link"><%= link_to student.full_name, "#" %></td>
+            <td class="cohort-link"><%= link_to student.full_name, admin_cohort_student_path(@cohort, student) %></td>
             <td><%= student.email %></td>
             <td><%= student.slack_username %></td>
             <td class="cohort-link"><%= student.learn_profile ? (link_to "Profile", student.learn_profile, target: :_blank) : "N/A" %></td>

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/cohorts', to: 'cohorts#index', as: 'cohorts'
     get '/cohorts/:id', to: 'cohorts#show', as: 'cohort'
+    get '/cohorts/:cohort_id/students/:id', to: 'students#show', as: 'cohort_student'
   end
 
   resources :users do
