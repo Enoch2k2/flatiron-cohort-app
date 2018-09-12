@@ -16,7 +16,6 @@ class StudentsController < ApplicationController
   end
 
   def create
-    binding.pry
     student = User.new(student_params)
     student.password = SecureRandom.hex
     if student.save
