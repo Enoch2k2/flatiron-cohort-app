@@ -16,6 +16,7 @@ class StudentsController < ApplicationController
   end
 
   def create
+    binding.pry
     student = User.new(student_params)
     student.password = SecureRandom.hex
     if student.save
@@ -49,7 +50,7 @@ class StudentsController < ApplicationController
     end
 
     def student_params
-      params.require(:user).permit(:first_name, :last_name, :slack_username, :learn_profle, :email, :cohort_id)
+      params.require(:user).permit(:first_name, :last_name, :slack_username, :learn_profile, :email, :cohort_id)
     end
 
     def cohort_params
