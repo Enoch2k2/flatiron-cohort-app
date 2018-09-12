@@ -49,7 +49,7 @@ class StudentsController < ApplicationController
     end
 
     def student_params
-      params.require(:user).permit(:first_name, :last_name, :slack_username, :email, :cohort_id)
+      params.require(:user).permit(:first_name, :last_name, :slack_username, :learn_profle, :email, :cohort_id)
     end
 
     def cohort_params
