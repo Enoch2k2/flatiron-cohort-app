@@ -11,6 +11,8 @@ class Admin::CohortsController < ApplicationController
   def show
   end
 
+  
+
   private
 
     def authorize_name

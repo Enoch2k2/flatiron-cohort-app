@@ -5,6 +5,7 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Name</th>
+      <th scope="col">Instructor</th>
       <th scope="col">Start Date</th>
       <th scope="col">End Date</th>
     </tr>
@@ -14,6 +15,7 @@
       <tr>
         <th scope="row"><%= i %></th>
         <td class="cohort-link"><%= link_to cohort.name, admin_cohort_path(cohort) %></td>
+        <td><%= cohort.instructor.full_name %></td>
         <td><%= cohort.start_date %></td>
         <td><%= cohort.end_date %></td>
       </tr>
