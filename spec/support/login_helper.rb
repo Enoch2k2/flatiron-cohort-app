@@ -10,7 +10,12 @@ module LoginHelper
   end
 
   def admin_login
-    
+    attrs = attributes_for(:admin)
+    create(:admin)
+    visit new_user_session_path
+    fill_in "user_email", with: attrs[:email]
+    fill_in "user_password", with: attrs[:password]
+    submit_form
   end
 
 end

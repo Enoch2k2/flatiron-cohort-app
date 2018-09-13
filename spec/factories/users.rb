@@ -45,7 +45,7 @@ FactoryBot.define do
   # # This will use the User class (Admin would have been guessed)
   factory :admin, class: User do
     email "admin@admin.com"
-    password "admin"
+    password "adminpass"
     first_name "Admin"
     last_name  "User"
     after(:create) do |user|
