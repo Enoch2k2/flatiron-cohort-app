@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     get '/cohorts', to: 'cohorts#index', as: 'cohorts'
     get '/cohorts/:id', to: 'cohorts#show', as: 'cohort'
     get '/cohorts/:cohort_id/students/:id', to: 'students#show', as: 'cohort_student'
+    resources :users
   end
 
   resources :users do
