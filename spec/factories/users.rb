@@ -43,9 +43,13 @@ FactoryBot.define do
   end
 
   # # This will use the User class (Admin would have been guessed)
-  # factory :admin, class: User do
-  #   first_name "Admin"
-  #   last_name  "User"
-  #   admin      true
-  # end
+  factory :admin, class: User do
+    email "admin@admin.com"
+    password "admin"
+    first_name "Admin"
+    last_name  "User"
+    after(:create) do |user|
+      user.roles << create(:admin_role)
+    end
+  end
 end
