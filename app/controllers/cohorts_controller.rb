@@ -2,7 +2,7 @@ class CohortsController < ApplicationController
   before_action :authorize_name
   before_action :authorize_user
   before_action :set_user
-  before_action :set_cohort, only: [:show]
+  before_action :set_cohort, only: [:show, :edit, :update]
 
   def index
   end
@@ -23,6 +23,16 @@ class CohortsController < ApplicationController
   def show
   end
 
+  def edit 
+  end 
+
+  def update 
+    if @cohort.update(cohort_params)
+      redirect_to user_cohort_path(@user, @cohort)
+    else
+      render :edit
+    end
+  end
   private
 
     def set_user
