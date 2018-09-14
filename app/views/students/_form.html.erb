@@ -1,0 +1,33 @@
+<%= form_for [user, cohort, student], url: url do |f| %>
+
+  <div class="field form-group">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name, autofocus: true, autocomplete: "off", class: "form-control", required: true %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name, autofocus: true, autocomplete: "off", class: "form-control", required: true %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :slack_username %><br />
+    <%= f.text_field :slack_username, autofocus: true, autocomplete: "off", class: "form-control", required: true %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :learn_profile %><br />
+    <%= f.text_field :learn_profile, autofocus: true, autocomplete: "off", class: "form-control", required: true %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "off", class: "form-control", required: true %>
+  </div>
+
+  <%= f.hidden_field :cohort_id, value: cohort.id, name: "cohort[id]" %>
+
+  <div class="actions">
+    <%= f.submit button_text, class: "btn btn-primary" %>
+  </div>
+<% end %>
