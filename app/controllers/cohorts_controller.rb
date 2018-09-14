@@ -1,6 +1,6 @@
 class CohortsController < ApplicationController
   before_action :authorize_name
-  before_action :authorize_user
+  # before_action :authorize_user
   before_action :set_user
   before_action :set_cohort, only: [:show, :edit, :update]
 
@@ -41,6 +41,7 @@ class CohortsController < ApplicationController
 
     def set_cohort
       @cohort = Cohort.find_by_id(params[:id]) if params[:id]
+      authorize @cohort
     end
 
     def cohort_params
