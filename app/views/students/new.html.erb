@@ -1,36 +1,4 @@
 <h3 class="student-show-link"><%= link_to "<< Back", user_cohort_path(@user, @cohort) %></h3>
 <h2 class="hdr">Create Student</h2>
 
-<%= form_for [@user, @cohort, @student], url: user_cohort_students_path(@user, @cohort) do |f| %>
-
-  <div class="field form-group">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, autofocus: true, autocomplete: "off", class: "form-control", required: true %>
-  </div>
-
-  <div class="field form-group">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name, autofocus: true, autocomplete: "off", class: "form-control", required: true %>
-  </div>
-
-  <div class="field form-group">
-    <%= f.label :slack_username %><br />
-    <%= f.text_field :slack_username, autofocus: true, autocomplete: "off", class: "form-control", required: true %>
-  </div>
-
-  <div class="field form-group">
-    <%= f.label :learn_profile %><br />
-    <%= f.text_field :learn_profile, autofocus: true, autocomplete: "off", class: "form-control", required: true %>
-  </div>
-
-  <div class="field form-group">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "off", class: "form-control", required: true %>
-  </div>
-
-  <%= f.hidden_field :cohort_id, value: @cohort.id, name: "cohort[id]" %>
-
-  <div class="actions">
-    <%= f.submit "Create Student", class: "btn btn-primary" %>
-  </div>
-<% end %>
+<%= render partial: 'form', locals: { user: @user, cohort: @cohort, student: @student, button_text: "Create Student", url: user_cohort_students_path(@user, @cohort) } %>

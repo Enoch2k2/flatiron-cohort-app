@@ -13,6 +13,8 @@ Rails.application.routes.draw do
       get '/students/new', to: 'students#new', as: 'new_student'
       post '/students', to: 'students#create', as: 'students'
       get '/students/:id', to: 'students#show', as: 'student'
+      get '/students/:id/edit', to: 'students#edit', as: 'edit_student'
+      patch '/students/:id', to: 'students#update', as: 'student_update'
       post '/students/:student_id/meetings', to: 'meetings#create', as: 'student_meetings'
       get '/students/:student_id/meetings/:id/add_to_doc', to: 'meetings#add_to_doc', as: 'add_student_meetings_to_doc'
       get '/students/:student_id/meetings/:id/add_to_instructor_app', to: 'meetings#add_to_instructor_app', as: 'add_student_meetings_to_instructor_app'

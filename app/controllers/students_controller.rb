@@ -5,7 +5,7 @@ class StudentsController < ApplicationController
   before_action :authorize_user
   before_action :set_user
   before_action :set_cohort
-  before_action :set_student, only: [:show]
+  before_action :set_student, only: [:show, :edit, :update, :destroy]
 
   def new
     @student = User.new
@@ -24,6 +24,17 @@ class StudentsController < ApplicationController
       redirect_to user_cohort_path(@user, @cohort)
     else
       redirect_to user_cohort_new_student_path(@user, @cohort)
+    end
+  end
+
+  def edit 
+  end
+
+  def update 
+    if @student.update(student_params)
+      redirect_to user_cohort_student_path(@student)
+    else
+      render :edit
     end
   end
 
