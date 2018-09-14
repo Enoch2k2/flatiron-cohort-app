@@ -1,4 +1,4 @@
-[] Add edit form to change user role, drop down
+[X] Add edit form to change user role, drop down
 [] Add search form to search user by github / Full Name / email
 [] Ability to edit Student Information
 [] Ability to edit the Cohort Name
