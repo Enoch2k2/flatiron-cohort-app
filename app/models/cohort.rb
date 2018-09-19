@@ -6,4 +6,12 @@ class Cohort < ApplicationRecord
   validates :name, presence: true
   validates :start_date, presence: true
   validates :end_date, presence: true
+
+  before_destroy :destroy_student_cohorts
+
+  private
+
+    def destroy_student_cohorts
+      self.student_cohorts.destroy_all
+    end
 end

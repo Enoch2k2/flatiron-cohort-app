@@ -21,7 +21,7 @@
         <td><%= cohort.start_date %></td>
         <td><%= cohort.end_date %></td>
         <td><%= link_to "Edit", edit_admin_cohort_path(cohort) %></td>
-        <td><%= link_to "Delete", admin_cohort_path(cohort), method: :delete %></td>
+        <td><%= link_to "Delete", admin_cohort_path(cohort), 'data-confirm': "Are you sure you want to delete #{cohort.name}?", method: :delete %></td>
       </tr>
     <% end %>
   </tbody>
