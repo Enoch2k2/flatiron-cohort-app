@@ -23,6 +23,6 @@ class Admin::UserPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user.admin? && user == user_record
+    user.admin? || user == user_record
   end
 end

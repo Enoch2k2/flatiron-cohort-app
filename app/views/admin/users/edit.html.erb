@@ -20,6 +20,11 @@
     <% end %>
   </div>
 
+  <div class="field form-group">
+    <%= f.label :current_cohort %>: 
+    <%= f.collection_select :current_cohort_id, Cohort.all, :id, :name, class: "form-control", include_blank: true %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Edit Account", class: "btn btn-primary" %>
   </div>

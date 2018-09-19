@@ -1,13 +1,5 @@
 <h3 class="cohort-link"><%= link_to "<< Back", user_cohorts_path(@user) %></h3>
 <h2 class="hdr">Create Cohort</h2>
 
-<div class="errors">
-  <% if @error_messages %>
-    <ul class="alert alert-danger">
-      <% @error_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  <% end %>
-</div>
+<%= render partial: 'errors', locals: {error_messages: @error_messages} %>
 <%= render partial: 'form', locals: {user: @user, cohort: @cohort, url: user_cohorts_path(@user), button_name: "Create Cohort"} %>

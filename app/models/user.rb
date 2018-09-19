@@ -10,6 +10,11 @@ class User < ApplicationRecord
   has_many :cohorts, through: :student_cohorts
   has_many :meetings
 
+  belongs_to :current_cohort, class_name: "Cohort"
+
+  before_destroy :destroy_student_cohorts
+  before_destroy :destroy_user_roles
+
   def instructed_cohorts
     Cohort.where("instructor_id = ?", self.id)
   end
@@ -35,4 +40,14 @@ class User < ApplicationRecord
     meetings.each{|m| total += m.completed_lessons}
     total
   end
+
+  private
+
+    def destroy_student_cohorts
+      self.student_cohorts.destroy_all
+    end
+
+    def destroy_user_roles
+      self.user_roles.destroy_all
+    end
 end

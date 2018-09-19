@@ -1,8 +1,7 @@
-[] Add edit form to change user role, drop down
-[] Ability to edit Student Information
-[] Add current cohort to student (foreign key)
-[] Ability to edit the Cohort Name
-[] Add edit meeting page / route / link (in show page)
-[] Add search form to search user by github / Full Name / email
-[] Add details in creating a meeting (knowledge check)
-[] Add ability to move to another cohort (due date 7/21)
+student.current_cohort << Returns Cohort Object >>
+student.student_cohort.left_on << Returns Date Object >>
+student.student_cohort.joined_on << Returns Date Object >>
+
+Revise cohort index pages to have current_students / not_current_students (helpers for cohort)
+
+Revise admin student edit page to include a section for adding student to a different cohort (collection select showing cohort name - insructor name, returns id)
