@@ -5,41 +5,49 @@
   <div class="field form-group">
     <%= f.label :date %><br />
     <%= f.date_field :date, autofocus: true, autocomplete: "off", class: "form-control" %>
+    <%= display_object_field_errors(meeting, :date) %>
   </div>
 
   <div class="field form-group">
     <%= f.label :time %><br />
     <%= f.text_field :time, autofocus: true, autocomplete: "off", class: "form-control" %>
+    <%= display_object_field_errors(meeting, :time) %>
   </div>
 
   <div class="field form-group">
     <%= f.label :current_lesson %><br />
     <%= f.text_field :current_lesson, autofocus: true, autocomplete: "off", class: "form-control" %>
+    <%= display_object_field_errors(meeting, :current_lesson) %>
   </div>
 
   <div class="field form-group">
     <%= f.label :completed_lessons %><br />
     <%= f.text_field :completed_lessons, autofocus: true, autocomplete: "off", class: "form-control" %>
+    <%= display_object_field_errors(meeting, :completed_lessons) %>
   </div>
 
   <div class="field form-group">
     <%= f.label :struggling? %><br />
     <%= f.check_box :struggling?, autofocus: true, autocomplete: "off", class: "form-control" %>
+    <%= display_object_field_errors(meeting, :struggling?) %>
   </div>
 
   <div class="field form-group">
     <%= f.label :behind_schedule? %><br />
     <%= f.check_box :behind_schedule?, autofocus: true, autocomplete: "off", class: "form-control" %>
+    <%= display_object_field_errors(meeting, :behind_schedule?) %>
   </div>
 
   <div class="field form-group">
     <%= f.label :knowledge_check %><br />
     <%= f.text_field :knowledge_check, autofocus: true, autocomplete: "off", class: "form-control" %>
+    <%= display_object_field_errors(meeting, :knowledge_check) %>
   </div>
 
   <div class="field form-group">
     <%= f.label :note %><br />
     <%= f.text_field :note, autofocus: true, autocomplete: "off", class: "form-control" %>
+    <%= display_object_field_errors(meeting, :note) %>
   </div>
 
   <%= f.hidden_field :user_id, value: student.id %>
