@@ -14,6 +14,10 @@ class Admin::CohortPolicy < ApplicationPolicy
     index?
   end
 
+  def edit
+    update?
+  end
+
   def update?
     user.admin?
   end

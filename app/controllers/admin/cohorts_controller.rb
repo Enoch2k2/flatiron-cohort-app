@@ -1,22 +1,24 @@
 class Admin::CohortsController < ApplicationController
   before_action :authorize_name
-  before_action :authorize_user
   before_action :set_cohort, only: [:show, :edit, :update, :destroy]
 
   def index
+    authorize_user("index?")
   end
 
 
   def show
+    authorize_user("show?")
   end
 
   def edit
-    authorize @cohort
+    authorize_user("update?")
   end
 
   def update
-    authorize @cohort
+    authorize_user("update?")
     if @cohort.update(cohort_params)
+      flash[:success] = "Successfully Updated #{@cohort.name}"
       redirect_to admin_cohorts_path
     else
       @error_messages = @cohort.errors.full_messages
@@ -25,7 +27,7 @@ class Admin::CohortsController < ApplicationController
   end
 
   def destroy
-    authorize @cohort
+    authorize_user("destroy?")
     @cohort.destroy
     flash[:success] = "Successfully Deleted #{@cohort.name}"
     redirect_to admin_cohorts_path
@@ -39,8 +41,11 @@ class Admin::CohortsController < ApplicationController
       redirect_to edit_user_path(current_user) if user_signed_in? && current_user.first_name.nil?
     end
     
-    def authorize_user
-      redirect_to root_path if !user_signed_in? || !current_user.admin? || !current_user.instructor?
+    def authorize_user(method_name)
+      unless Admin::CohortPolicy.new(current_user, @cohort).send(method_name)
+        flash[:warning] = "You are not authorized to preform this action"
+        redirect_to admin_cohorts_path
+      end
     end
 
     def set_cohort
