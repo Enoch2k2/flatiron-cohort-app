@@ -10,7 +10,7 @@ class User < ApplicationRecord
   has_many :cohorts, through: :student_cohorts
   has_many :meetings
 
-  belongs_to :current_cohort, class_name: "Cohort"
+  belongs_to :current_cohort, class_name: "Cohort", required: false
 
   before_destroy :destroy_student_cohorts
   before_destroy :destroy_user_roles

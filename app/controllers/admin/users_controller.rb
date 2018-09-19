@@ -5,14 +5,16 @@ class Admin::UsersController < Admin::AdminController
     @users = User.all
   end
 
-  def edit 
+  def edit
+    authorize_user("edit?")
   end
 
   def update 
     if @user.update(user_params)
       check_if_moved_cohorts
-      redirect_to admin_users_path
-    else  
+      redirect_to admin_users_path, success: "User successfully updated"
+    else
+      @error_messages = @user.errors.full_messages
       render :edit
     end
   end
@@ -26,11 +28,11 @@ class Admin::UsersController < Admin::AdminController
   private
 
   def check_if_moved_cohorts
-    if @user.current_cohort && !@user.cohorts.include?(@user.current_cohort)
+    if !@user.admin? && @user.instructor? && @user.current_cohort && !@user.cohorts.include?(@user.current_cohort)
       @user.update(cohort_ids: @user.cohort_ids.concat([@user.current_cohort.id]))
     end
 
-    if @user.current_cohort && !@user.current_cohort.students.include?(@user)
+    if !@user.admin? && !@user.instructor? && @user.current_cohort && !@user.current_cohort.students.include?(@user)
       @user.current_cohort.update(student_ids: @user.current_cohort.students.concat([@user.id]))
     end
   end

@@ -9,6 +9,10 @@ class Cohort < ApplicationRecord
 
   before_destroy :destroy_student_cohorts
 
+  def current_students
+    students.select{|student| student.current_cohort == self}
+  end
+
   private
 
     def destroy_student_cohorts

@@ -1,5 +1,5 @@
 <h3 class="student-show-link"><%= link_to "<< Back", user_cohort_path(@user, @cohort) %></h3>
 <h2 class="hdr">Create Student</h2>
 
-<%= render partial: 'errors', locals: {error_messages: @error_messages} %>
+<%= render partial: 'layouts/errors', locals: {error_messages: @error_messages} %>
 <%= render partial: 'form', locals: { user: @user, cohort: @cohort, student: @student, button_text: "Create Student", url: user_cohort_students_path(@user, @cohort) } %>

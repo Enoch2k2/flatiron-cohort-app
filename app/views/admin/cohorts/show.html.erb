@@ -1,5 +1,6 @@
 <h3 class="cohort-link"><%= link_to "<< Back", admin_cohorts_path %></h3>
 <h1><%= @cohort.name %></h1>
+<h3>Cohort Lead: <%= @cohort.instructor.full_name %></h3>
     <br/>
     <table class="table table-striped">
       <thead class="thead-dark">
@@ -14,7 +15,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @cohort.students.sort_by{|s| s.first_name}.each.with_index(1) do |student, i| %>
+        <% @cohort.current_students.sort_by{|s| s.first_name}.each.with_index(1) do |student, i| %>
           <tr>
             <th scope="row"><%= i %></th>
             <td class="cohort-link"><%= link_to student.full_name, admin_cohort_student_path(@cohort, student) %></td>

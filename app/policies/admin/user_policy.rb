@@ -15,7 +15,7 @@ class Admin::UserPolicy < ApplicationPolicy
   end
 
   def edit?
-    user.admin? && !user_record.admin?
+    user.admin? || user == user_record
   end
 
   def update?
