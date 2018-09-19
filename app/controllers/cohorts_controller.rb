@@ -16,7 +16,7 @@ class CohortsController < ApplicationController
     if @cohort.save
       redirect_to user_cohorts_path(@user)
     else
-      redirect_to new_user_cohort_path(@user)
+      render :new
     end
   end
 
