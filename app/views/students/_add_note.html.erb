@@ -1,6 +1,6 @@
 <h2 class="hdr">Create Meeting</h2>
 
-<%= form_for [@user, @cohort, @student, Meeting.new], url: user_cohort_student_meetings_path(@user, @cohort, student) do |f| %>
+<%= form_for [user, cohort, student, meeting], url: user_cohort_student_meetings_path(user, cohort, student) do |f| %>
 
   <div class="field form-group">
     <%= f.label :date %><br />
@@ -42,7 +42,7 @@
     <%= f.text_field :note, autofocus: true, autocomplete: "off", class: "form-control" %>
   </div>
 
-  <%= f.hidden_field :user_id, value: @student.id %>
+  <%= f.hidden_field :user_id, value: student.id %>
 
   <div class="actions">
     <%= f.submit "Create Meeting", class: "btn btn-primary" %>

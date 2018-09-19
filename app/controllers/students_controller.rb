@@ -12,7 +12,7 @@ class StudentsController < ApplicationController
   end
 
   def show
-
+    @meeting = @student.meetings.build
   end
 
   def create

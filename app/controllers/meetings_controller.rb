@@ -7,12 +7,14 @@ class MeetingsController < ApplicationController
   before_action :set_meeting, only: [:add_to_doc, :add_to_instructor_app, :destroy]
 
   def create
-    meeting = Meeting.new(meeting_params)
-    if meeting.save
-      meeting.update(added_to_doc?: false, added_to_instructor_app?: false)
+    @meeting = Meeting.new(meeting_params)
+    
+    if @meeting.save
+      binding.pry
+      @meeting.update(added_to_doc?: false, added_to_instructor_app?: false)
       redirect_to user_cohort_student_path(@user, @cohort, @student)
     else
-      redirect_to user_cohort_student_path(@user, @cohort, @student)
+      render 'students/show'
     end
   end
 
