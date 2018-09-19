@@ -16,7 +16,8 @@ class CohortsController < ApplicationController
     if @cohort.save
       redirect_to user_cohorts_path(@user)
     else
-      redirect_to new_user_cohort_path(@user)
+      @error_messages = @cohort.errors.full_messages
+      render :new
     end
   end
 
@@ -30,6 +31,7 @@ class CohortsController < ApplicationController
     if @cohort.update(cohort_params)
       redirect_to user_cohort_path(@user, @cohort)
     else
+      @error_messages = @cohort.errors.full_messages
       render :edit
     end
   end

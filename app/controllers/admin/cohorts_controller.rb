@@ -1,14 +1,33 @@
 class Admin::CohortsController < ApplicationController
   before_action :authorize_name
   before_action :authorize_user
-  before_action :set_user
-  before_action :set_cohort, only: [:show]
+  before_action :set_cohort, only: [:show, :edit, :update, :destroy]
 
   def index
   end
 
 
   def show
+  end
+
+  def edit
+    authorize @cohort
+  end
+
+  def update
+    authorize @cohort
+    if @cohort.update(cohort_params)
+      redirect_to admin_cohorts_path
+    else
+      @error_messages = @cohort.errors.full_messages
+      render :edit
+    end
+  end
+
+  def destroy
+    authorize @cohort
+    @cohort.destroy
+    redirect_to admin_cohorts_path
   end
 
   
@@ -21,10 +40,6 @@ class Admin::CohortsController < ApplicationController
     
     def authorize_user
       redirect_to root_path if !user_signed_in? || !current_user.admin? || !current_user.instructor?
-    end
-
-    def set_user
-      @user = User.find_by_id(params[:user_id]) if params[:user_id]
     end
 
     def set_cohort

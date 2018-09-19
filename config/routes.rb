@@ -2,8 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   namespace :admin do
-    get '/cohorts', to: 'cohorts#index', as: 'cohorts'
-    get '/cohorts/:id', to: 'cohorts#show', as: 'cohort'
+    resources :cohorts, except: [:new, :create]
     get '/cohorts/:cohort_id/students/:id', to: 'students#show', as: 'cohort_student'
     resources :users
   end
