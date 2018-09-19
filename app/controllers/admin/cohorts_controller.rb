@@ -27,6 +27,7 @@ class Admin::CohortsController < ApplicationController
   def destroy
     authorize @cohort
     @cohort.destroy
+    flash[:success] = "Successfully Deleted #{@cohort.name}"
     redirect_to admin_cohorts_path
   end
 
