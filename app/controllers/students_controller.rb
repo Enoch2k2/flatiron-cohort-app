@@ -16,14 +16,14 @@ class StudentsController < ApplicationController
   end
 
   def create
-    student = User.new(student_params)
-    student.password = SecureRandom.hex
-    if student.save
-      student.update(roles: [Role.find_by(name: "Student")])
-      student.student_cohorts.create(cohort_id: cohort_params[:id])
+    @student = User.new(student_params)
+    @student.password = SecureRandom.hex
+    if @student.save
+      @student.update(roles: [Role.find_by(name: "Student")])
+      @student.student_cohorts.create(cohort_id: cohort_params[:id])
       redirect_to user_cohort_path(@user, @cohort)
     else
-      redirect_to user_cohort_new_student_path(@user, @cohort)
+      render :new
     end
   end
 
