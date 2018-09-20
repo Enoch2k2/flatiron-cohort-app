@@ -39,6 +39,9 @@ class User < ApplicationRecord
   end
 
   def current_cohort_attributes=(id)
+    # checks if user is a student and will add a role if they aren't already a student
+    Role.add_student(self)
+
     # add left at to cohort student is leaving if they have a current cohort
     if self.student? && self.current_cohort
       self.student_cohorts.find_by(cohort_id: self.current_cohort_id).update(left_at: Date.today)
@@ -51,6 +54,7 @@ class User < ApplicationRecord
     if self.student? && self.current_cohort
       self.student_cohorts.find_or_create_by(cohort_id: self.current_cohort_id).update(joined_at: Date.today)
     end
+
   end
 
   def current_cohort_attributes

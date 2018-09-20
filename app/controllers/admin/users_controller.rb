@@ -11,7 +11,6 @@ class Admin::UsersController < Admin::AdminController
 
   def update 
     if @user.update(user_params)
-      binding.pry
       redirect_to admin_users_path, success: "User successfully updated"
     else
       @error_messages = @user.errors.full_messages

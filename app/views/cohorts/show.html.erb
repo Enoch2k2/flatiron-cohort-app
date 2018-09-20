@@ -24,7 +24,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @cohort.students.sort_by{|s| s.first_name}.each.with_index(1) do |student, i| %>
+        <% @cohort.current_students.sort_by{|s| s.first_name}.each.with_index(1) do |student, i| %>
           <tr>
             <th scope="row"><%= i %></th>
             <td class="cohort-link"><%= link_to student.full_name, user_cohort_student_path(@user, @cohort, student) %></td>
