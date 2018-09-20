@@ -4,16 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :user_roles
+  has_many :user_roles, dependent: :destroy
   has_many :roles, through: :user_roles
-  has_many :student_cohorts
+  has_many :student_cohorts, dependent: :destroy
   has_many :cohorts, through: :student_cohorts
   has_many :meetings
 
   belongs_to :current_cohort, class_name: "Cohort", required: false
-
-  before_destroy :destroy_student_cohorts
-  before_destroy :destroy_user_roles
 
   def instructed_cohorts
     Cohort.where("instructor_id = ?", self.id)
@@ -41,13 +38,22 @@ class User < ApplicationRecord
     total
   end
 
-  private
-
-    def destroy_student_cohorts
-      self.student_cohorts.destroy_all
+  def current_cohort_attributes=(id)
+    # add left at to cohort student is leaving if they have a current cohort
+    if self.student? && self.current_cohort
+      self.student_cohorts.find_by(cohort_id: self.current_cohort_id).update(left_at: Date.today)
     end
 
-    def destroy_user_roles
-      self.user_roles.destroy_all
+    # set current_cohort to new cohort
+    self.current_cohort = Cohort.find_by_id(id)
+
+    # add joined at to new cohort
+    if self.student? && self.current_cohort
+      self.student_cohorts.find_or_create_by(cohort_id: self.current_cohort_id).update(joined_at: Date.today)
     end
+  end
+
+  def current_cohort_attributes
+    self.current_cohort_id if self.current_cohort
+  end
 end
