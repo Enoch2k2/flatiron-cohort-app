@@ -52,8 +52,8 @@ ActiveRecord::Schema.define(version: 2018_09_19_164431) do
     t.bigint "cohort_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.date "added_on"
-    t.date "joined_on"
+    t.date "left_at"
+    t.date "joined_at"
     t.index ["cohort_id"], name: "index_student_cohorts_on_cohort_id"
     t.index ["user_id"], name: "index_student_cohorts_on_user_id"
   end

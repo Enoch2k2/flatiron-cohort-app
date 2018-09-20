@@ -3,26 +3,31 @@
   <div class="field form-group">
     <%= f.label :first_name %><br />
     <%= f.text_field :first_name, autofocus: true, autocomplete: "off", class: "form-control", required: true %>
+    <%= display_object_field_errors(student, :first_name) %>
   </div>
 
   <div class="field form-group">
     <%= f.label :last_name %><br />
     <%= f.text_field :last_name, autofocus: true, autocomplete: "off", class: "form-control", required: true %>
+    <%= display_object_field_errors(student, :last_name) %>
   </div>
 
   <div class="field form-group">
     <%= f.label :slack_username %><br />
     <%= f.text_field :slack_username, autofocus: true, autocomplete: "off", class: "form-control", required: true %>
+    <%= display_object_field_errors(student, :slack_username) %>
   </div>
 
   <div class="field form-group">
     <%= f.label :learn_profile %><br />
     <%= f.text_field :learn_profile, autofocus: true, autocomplete: "off", class: "form-control", required: true %>
+    <%= display_object_field_errors(student, :learn_profile) %>
   </div>
 
   <div class="field form-group">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "off", class: "form-control", required: true %>
+    <%= display_object_field_errors(student, :email) %>
   </div>
 
   <%= f.hidden_field :cohort_id, value: cohort.id, name: "cohort[id]" %>

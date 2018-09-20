@@ -1,4 +1,4 @@
 <h3 class="cohort-link"><%= link_to "<< Back", admin_cohorts_path %></h3>
 <h2 class="hdr">Update Cohort</h2>
-<%= render partial: 'layouts/errors', locals: {error_messages: @error_messages} %>
+
 <%= render partial: 'cohorts/form', locals: {user: @cohort.instructor, cohort: @cohort, url: admin_cohort_path(@cohort), button_name: "Update Cohort"} %>

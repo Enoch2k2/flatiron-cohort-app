@@ -12,7 +12,7 @@ class StudentsController < ApplicationController
   end
 
   def show
-
+    @meeting = @student.meetings.build
   end
 
   def create
@@ -23,7 +23,6 @@ class StudentsController < ApplicationController
       @student.student_cohorts.create(cohort_id: cohort_params[:id])
       redirect_to user_cohort_path(@user, @cohort)
     else
-      @error_messages = student.error_messages
       render :new
     end
   end

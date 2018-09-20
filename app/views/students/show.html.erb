@@ -21,7 +21,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @student.meetings.sort_by{|meeting| meeting.date}.each.with_index(1) do |meeting, i| %>
+    <% @student.meetings.reject{|m| m.id.nil?}.sort_by{|meeting| meeting.date}.each.with_index(1) do |meeting, i| %>
       <tr>
         <td scope="col" class="student-show-text-small"><%= i %></td>
         <td scope="col" class="student-show-text-small"><%= meeting.date %></td>
@@ -39,4 +39,4 @@
     <% end %>
   </tbody>
 </table>
-<%= render partial: 'students/add_note', locals: {student: @student} %>        
+<%= render partial: 'students/add_note', locals: {user: @user, cohort: @cohort,student: @student, meeting: @meeting} %>        
