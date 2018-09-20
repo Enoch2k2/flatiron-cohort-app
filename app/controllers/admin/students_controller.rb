@@ -1,4 +1,4 @@
-class Admin::StudentsController < ApplicationController
+class Admin::StudentsController < Admin::AdminController
   before_action :authorize_name
   before_action :authorize_user
   before_action :set_cohort

@@ -1,5 +1,5 @@
 class Cohort < ApplicationRecord
-  has_many :student_cohorts
+  has_many :student_cohorts, dependent: :destroy
   has_many :students, through: :student_cohorts
   belongs_to :instructor, class_name: "User"
 
@@ -7,15 +7,15 @@ class Cohort < ApplicationRecord
   validates :start_date, presence: true
   validates :end_date, presence: true
 
-  before_destroy :destroy_student_cohorts
+  before_destroy :remove_all_current_students
 
   def current_students
-    students.select{|student| student.current_cohort == self}
+    students.where("current_cohort_id = ?", self.id)
   end
 
   private
-
-    def destroy_student_cohorts
-      self.student_cohorts.destroy_all
+    def remove_all_current_students
+      current_students.update_all(current_cohort_id: nil)
     end
+
 end

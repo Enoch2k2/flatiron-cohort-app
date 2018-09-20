@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_19_151957) do
+ActiveRecord::Schema.define(version: 2018_09_19_164431) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,8 @@ ActiveRecord::Schema.define(version: 2018_09_19_151957) do
     t.bigint "cohort_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "added_on"
+    t.date "joined_on"
     t.index ["cohort_id"], name: "index_student_cohorts_on_cohort_id"
     t.index ["user_id"], name: "index_student_cohorts_on_user_id"
   end

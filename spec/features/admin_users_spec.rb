@@ -12,7 +12,7 @@ RSpec.feature "Admin Users", type: :feature do
     it "allows admins to edit user roles" do 
       admin_login
       attrs = attributes_for(:instructor)
-      create(:instructor)
+      instructor = create(:instructor)
       instructor_role = create(:instructor_role)
       student_role = create(:student_role)
       visit admin_users_path
@@ -21,16 +21,29 @@ RSpec.feature "Admin Users", type: :feature do
       check "user_role_ids_#{instructor_role.id}"
       check "user_role_ids_#{student_role.id}"
       submit_form
-      instructor = User.find_by(email: attrs[:email])
       expect(instructor.roles).to include(instructor_role)
       expect(instructor.roles).to include(student_role)
 
       find('tr:nth-child(2)').click_link("Edit")
       uncheck "user_role_ids_#{student_role.id}"
       submit_form
-      instructor = User.find_by(email: attrs[:email])
+      
       expect(instructor.roles).to include(instructor_role)
       expect(instructor.roles).not_to include(student_role)
+    end
+  end
+
+  describe "Edit Users" do
+    it "allows the ability to move cohorts" do
+      admin_login
+      cohort_1 = create(:cohort_1)
+      cohort_2 = create(:cohort_with_students)
+      student_1 = cohort_2.students.first
+      visit edit_admin_user_path(student_1)
+      select "Cohort 1", from: "user_current_cohort_attributes"
+      submit_form
+      student_1.reload
+      expect(student_1.current_cohort).to eq(cohort_1)
     end
   end
 end

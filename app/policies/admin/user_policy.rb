@@ -15,7 +15,7 @@ class Admin::UserPolicy < ApplicationPolicy
   end
 
   def edit?
-    user.admin? || user == user_record
+    user.admin?
   end
 
   def update?
@@ -23,6 +23,6 @@ class Admin::UserPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user.admin? || user == user_record
+    user.admin?
   end
 end

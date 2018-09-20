@@ -4,26 +4,29 @@ FactoryBot.define do
   #   last_name  "Doe"
   #   admin false
   # end
+  sequence :email do |n|
+    "test#{n}@example.com"
+  end
 
   factory :user do
-    email "test2@test.com"
+    email
     password "testtest"
   end
 
   factory :instructor, class: User do
-    email "test3@test.com"
+    email 
     password "testtest"
     first_name "Bob"
     last_name "Not Bob"
   end
 
   factory :instructor_without_name, class: User do
-    email "test4@test.com"
+    email
     password "testtest"
   end
 
   factory :student_1, class: User do
-    email "test5@test.com"
+    email
     password "testtest"
     first_name "Test"
     last_name "Test"
@@ -33,7 +36,7 @@ FactoryBot.define do
   end
 
   factory :student_2, class: User do
-    email "test6@test.com"
+    email
     password "testtest"
     first_name "Test2"
     last_name "Test2"
@@ -44,7 +47,7 @@ FactoryBot.define do
 
   # # This will use the User class (Admin would have been guessed)
   factory :admin, class: User do
-    email "admin@admin.com"
+    email 
     password "adminpass"
     first_name "Admin"
     last_name  "User"

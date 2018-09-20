@@ -2,18 +2,18 @@ module LoginHelper
 
   def instructor_login
     attrs = attributes_for(:instructor)
-    create(:instructor)
+    instructor = create(:instructor)
     visit new_user_session_path
-    fill_in "user_email", with: attrs[:email]
+    fill_in "user_email", with: instructor.email
     fill_in "user_password", with: attrs[:password]
     submit_form
   end
 
   def admin_login
     attrs = attributes_for(:admin)
-    create(:admin)
+    admin = create(:admin)
     visit new_user_session_path
-    fill_in "user_email", with: attrs[:email]
+    fill_in "user_email", with: admin.email
     fill_in "user_password", with: attrs[:password]
     submit_form
   end
