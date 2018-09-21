@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_many :student_cohorts, dependent: :destroy
   has_many :cohorts, through: :student_cohorts
   has_many :meetings
+  
+  validates_uniqueness_of :email, :slack_username, :learn_profile
 
   belongs_to :current_cohort, class_name: "Cohort", required: false
 
@@ -59,7 +61,7 @@ class User < ApplicationRecord
 
     # set current_cohort to new cohort
     self.current_cohort = Cohort.find_by_id(id)
-    
+
     # add joined at to new cohort
     if self.student? && self.current_cohort
       self.student_cohorts.find_or_create_by(cohort_id: self.current_cohort_id).update(joined_at: Date.today)
