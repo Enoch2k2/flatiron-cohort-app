@@ -10,7 +10,6 @@ class MeetingsController < ApplicationController
     @meeting = Meeting.new(meeting_params)
     
     if @meeting.save
-      binding.pry
       @meeting.update(added_to_doc?: false, added_to_instructor_app?: false)
       redirect_to user_cohort_student_path(@user, @cohort, @student)
     else
