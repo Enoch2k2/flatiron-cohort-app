@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :meetings
   
   validates_uniqueness_of :email
-  validates_uniqueness_of :slack_username, :learn_profile, allow_blank: true
+  validates_uniqueness_of :learn_profile, allow_blank: true
 
   belongs_to :current_cohort, class_name: "Cohort", required: false
 
