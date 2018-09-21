@@ -12,6 +12,8 @@ class User < ApplicationRecord
   
   validates_uniqueness_of :email
   validates_uniqueness_of :learn_profile, allow_blank: true
+  
+  before_save :check_github
 
   belongs_to :current_cohort, class_name: "Cohort", required: false
 
@@ -73,4 +75,11 @@ class User < ApplicationRecord
   def current_cohort_attributes
     self.current_cohort_id if self.current_cohort
   end
+
+  private
+    def check_github
+      if self.github_username.blank?
+        self.github_username = nil
+      end
+    end
 end
