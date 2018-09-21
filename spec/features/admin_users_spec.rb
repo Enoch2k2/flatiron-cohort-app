@@ -34,7 +34,7 @@ RSpec.feature "Admin Users", type: :feature do
   end
 
   describe "Edit Users" do
-    it "allows the ability to move cohorts" do
+    it "allows the ability to move cohorts marking joined at and left at dates" do
       admin_login
       cohort_1 = create(:cohort_1)
       cohort_2 = create(:cohort_with_students)
@@ -44,6 +44,8 @@ RSpec.feature "Admin Users", type: :feature do
       submit_form
       student_1.reload
       expect(student_1.current_cohort).to eq(cohort_1)
+      expect(student_1.student_cohorts.find_by(cohort: cohort_2).left_at).to eq(Date.today)
+      expect(student_1.student_cohorts.find_by(cohort: cohort_1).joined_at).to eq(Date.today)
     end
   end
 end

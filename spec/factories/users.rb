@@ -8,6 +8,10 @@ FactoryBot.define do
     "test#{n}@example.com"
   end
 
+  sequence :slack_username do |n|
+    "Test2k2#{n}"
+  end
+
   factory :user do
     email
     password "testtest"
@@ -27,20 +31,20 @@ FactoryBot.define do
 
   factory :student_1, class: User do
     email
+    slack_username
     password "testtest"
     first_name "Test"
     last_name "Test"
-    slack_username "Test2k2"
     current_lesson "Intro to HTML"
     completed_lessons 15
   end
 
   factory :student_2, class: User do
     email
+    slack_username 
     password "testtest"
     first_name "Test2"
     last_name "Test2"
-    slack_username "TestSlack"
     current_lesson "Intro to HTML"
     completed_lessons 15
   end

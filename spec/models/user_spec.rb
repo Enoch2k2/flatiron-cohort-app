@@ -19,7 +19,7 @@ RSpec.describe User, type: :model do
 
     it "has a slack_username" do
       
-      expect(student.slack_username).to eq("Test2k2")
+      expect(student.slack_username).to eq(student.slack_username)
       expect(student.valid?).to eq(true)
     end
 

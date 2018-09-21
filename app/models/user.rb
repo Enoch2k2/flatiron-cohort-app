@@ -10,7 +10,8 @@ class User < ApplicationRecord
   has_many :cohorts, through: :student_cohorts
   has_many :meetings
   
-  validates_uniqueness_of :email, :slack_username, :learn_profile
+  validates_uniqueness_of :email
+  validates_uniqueness_of :slack_username, :learn_profile, allow_blank: true
 
   belongs_to :current_cohort, class_name: "Cohort", required: false
 

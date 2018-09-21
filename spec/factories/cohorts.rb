@@ -19,7 +19,7 @@ FactoryBot.define do
         student_2 = create(:student_2)
         [student_1, student_2].each do |student|
           student.current_cohort = cohort
-          student.cohorts << cohort
+          student.student_cohorts.create(cohort: cohort, joined_at: Date.today)
           student.save
         end
       end
