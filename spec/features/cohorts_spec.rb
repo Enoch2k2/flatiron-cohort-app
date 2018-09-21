@@ -53,5 +53,22 @@ RSpec.feature "Cohorts", type: :feature do
       visit user_cohort_path(instructor, cohort_1)
       expect(page.status_code).to eq(200)
     end
+
+    it "allows instructors to add students" do 
+      login_as(instructor, scope: :user)
+      visit user_cohort_path(instructor, cohort_1)
+      click_link "Add Student"
+      attrs = attributes_for(:student_1)
+      fill_in "user_first_name", with: attrs[:first_name]
+      fill_in "user_last_name", with: attrs[:last_name]
+      fill_in "user_slack_username", with: attrs[:slack_username]
+      fill_in "user_learn_profile", with: "https://learn.co/#{attrs[:slack_username]}"
+      fill_in "user_email", with: attrs[:email]
+      submit_form
+      expect(current_path).to eq(user_cohort_path(instructor, cohort_1))
+      expect(page).to have_content(attrs[:slack_username])
+      student = User.find_by(slack_username: attrs[:slack_username])
+      expect(student.current_cohort).to eq(cohort_1)
+    end
   end
 end

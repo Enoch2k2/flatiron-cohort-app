@@ -13,6 +13,17 @@ class Cohort < ApplicationRecord
     students.where("current_cohort_id = ?", self.id)
   end
 
+  def add_student(user)
+    user.add_student_role
+    user.current_cohort = self
+    # If this user is only a student & they haven't been previously added to this cohort
+    # then add them and mark them joined at today's date.
+    if user.only_student? && !user.cohorts.include?(self)
+      user.student_cohorts.create(cohort: self, joined_at: Date.today)
+    end
+    user.save
+  end
+
   private
     def remove_all_current_students
       current_students.update_all(current_cohort_id: nil)

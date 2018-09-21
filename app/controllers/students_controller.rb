@@ -16,10 +16,8 @@ class StudentsController < ApplicationController
   end
 
   def create
-    @student = User.new(student_params)
-    @student.password = SecureRandom.hex
-    if @student.save
-      @student.update(roles: [Role.find_by(name: "Student")])      
+    @student = User.new(student_params.merge(password: SecureRandom.hex))
+    if @student.save && @cohort.add_student(@student)
       redirect_to user_cohort_path(@user, @cohort)
     else
       render :new
@@ -45,6 +43,7 @@ class StudentsController < ApplicationController
 
     def set_cohort
       @cohort = Cohort.find_by_id(params[:cohort_id]) if params[:cohort_id]
+      redirect_to(request.referrer || root_path) if params[:cohort_id] && @cohort.nil?
     end
 
     def set_student
@@ -52,6 +51,6 @@ class StudentsController < ApplicationController
     end
 
     def student_params
-      params.require(:user).permit(:first_name, :last_name, :slack_username, :learn_profile, :email, :current_cohort_attributes)
+      params.require(:user).permit(:first_name, :last_name, :slack_username, :learn_profile, :email)
     end
 end
