@@ -28,6 +28,16 @@ class User < ApplicationRecord
     roles.any?{|role| role.name == "Student"}
   end
 
+  def only_student?
+    roles.count == 1 && roles.first.name == "Student"
+  end
+
+  def add_student_role
+    if roles.empty?
+      roles << Role.find_or_create_by(name: "Student")
+    end
+  end
+
   def full_name
     "#{first_name} #{last_name}"
   end
@@ -40,7 +50,7 @@ class User < ApplicationRecord
 
   def current_cohort_attributes=(id)
     # checks if user is a student and will add a role if they aren't already a student
-    Role.add_student(self)
+    self.add_student_role
 
     # add left at to cohort student is leaving if they have a current cohort
     if self.student? && self.current_cohort
@@ -49,7 +59,7 @@ class User < ApplicationRecord
 
     # set current_cohort to new cohort
     self.current_cohort = Cohort.find_by_id(id)
-
+    
     # add joined at to new cohort
     if self.student? && self.current_cohort
       self.student_cohorts.find_or_create_by(cohort_id: self.current_cohort_id).update(joined_at: Date.today)
