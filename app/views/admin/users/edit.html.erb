@@ -13,6 +13,11 @@
   </div>
 
   <div class="field form-group">
+    <%= f.label :github_username %>
+    <%= f.text_field :github_username, autocomplete: "off", class: "form-control" %>
+  </div>
+
+  <div class="field form-group">
     <%= f.label :roles %>: 
     <%= f.collection_check_boxes :role_ids, Role.all, :id, :name, class: "form-control" do |b| %>
       <div>

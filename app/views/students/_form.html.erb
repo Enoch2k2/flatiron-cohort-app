@@ -30,6 +30,12 @@
     <%= display_object_field_errors(student, :email) %>
   </div>
 
+  <div class="field form-group">
+    <%= f.label :github_username %><br />
+    <%= f.email_field :github_username, autofocus: true, autocomplete: "off", class: "form-control", required: true %>
+    <%= display_object_field_errors(student, :email) %>
+  </div>
+
   <div class="actions">
     <%= f.submit button_text, class: "btn btn-primary" %>
   </div>

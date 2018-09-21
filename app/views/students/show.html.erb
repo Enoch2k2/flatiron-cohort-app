@@ -1,6 +1,7 @@
 <h3 class="student-show-link"><%= link_to "<< Back", user_cohort_path(@user, @cohort) %></h3>
 <h1><%= @student.full_name %></h1>
 <h3 class="student-show-link"><%= link_to "Learn Profile", @student.learn_profile, target: :_blank %></h3>
+<h3 class="student-show-link"><%= @student.github_username ? (link_to "https://github.com/#{@student.github_username}?tab=repositories", target: :_blank { image_tag "GitHub-Mark-32px.png" }) : "Not Available" %></h3>
 <div><%= link_to "Edit", user_cohort_edit_student_path(@user, @cohort, @student) %></div>
 <br/>
 <table class="table table-striped">

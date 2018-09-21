@@ -32,7 +32,7 @@ class Admin::UsersController < Admin::AdminController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :current_cohort_attributes, role_ids: [])
+    params.require(:user).permit(:first_name, :last_name, :github_username, :current_cohort_attributes, role_ids: [])
   end
 
 end
