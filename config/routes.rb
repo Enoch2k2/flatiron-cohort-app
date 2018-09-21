@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :cohorts, except: [:new, :create]
     get '/cohorts/:cohort_id/students/:id', to: 'students#show', as: 'cohort_student'
+    get '/students/:id', to: 'students#show', as: 'student'
     resources :users
   end
 

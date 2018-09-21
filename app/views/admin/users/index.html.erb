@@ -6,17 +6,19 @@
       <th scope="col">#</th>
       <th scope="col">First Name</th>
       <th scope="col">Last Name</th>
+      <th scope="col">Student Profile</th>
       <th scope="col">Roles</th>
       <th scope="col">Current Cohort</th>
       <th scope="col">Links</th>
     </tr>
   </thead>
   <tbody>
-    <% @users.each.with_index(1) do |user, i| %>
+    <% @users.sort_by{|user| user.first_name}.each.with_index(1) do |user, i| %>
       <tr>
         <th scope="row"><%= i %></th>
         <td><%= user.first_name %></td>
         <td><%= user.last_name %></td>
+        <td><%= user.student? ? (link_to "Profile", admin_student_path(user)) : "Not a student" %></td>
         <td><%= user.roles.map{|u| u.name}.join(", ") %></td>
         <td><%= user.current_cohort ? (link_to user.current_cohort.name, admin_cohort_path(user.current_cohort)) : "Not assigned" %></td>
         <td><%= link_to "Edit", edit_admin_user_path(user) %>, <%= link_to "Delete", admin_user_path(user), method: "delete" %></td>
