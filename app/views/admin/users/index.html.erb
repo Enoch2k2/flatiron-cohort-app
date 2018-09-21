@@ -5,7 +5,6 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">User</th>
-      <th scope="col">Student Profile</th>
       <th scope="col">Links</th>
       <th scope="col">Roles</th>
       <th scope="col">Current Cohort</th>
@@ -16,8 +15,7 @@
     <% @users.sort_by{|user| user.first_name}.each.with_index(1) do |user, i| %>
       <tr>
         <th scope="row"><%= i %></th>
-        <td><%= user.full_name %></td>
-        <td><%= user.student? ? (link_to "Profile", admin_student_path(user)) : "Not a student" %></td>
+        <td><%= user.student? ? (link_to user.full_name, admin_student_path(user)) : user.full_name %></td>
         <td><%= user.learn_profile ? (link_to user.learn_profile, target: :_blank { image_tag "learn_image.png", class: "img-sm", width: "32px", height: "32px" }) : "" %> <%= user.github_username ? (link_to "https://github.com/#{user.github_username}?tab=repositories", target: :_blank { image_tag "GitHub-Mark-32px.png" }) : "" %></td>
         <td><%= user.roles.map{|u| u.name}.join(", ") %></td>
         <td><%= user.current_cohort ? (link_to user.current_cohort.name, admin_cohort_path(user.current_cohort)) : "Not assigned" %></td>
