@@ -6,11 +6,4 @@ class Role < ApplicationRecord
   scope :instructor, -> { where("name = 'Instructor'").first }
   scope :admin, -> { where("name = 'Admin'").first }
 
-  def self.add_student(user)
-   role = Role.find_by(name: "Student")
-   if user.roles.empty?
-    user.roles << role
-   end
-  end
-
 end
