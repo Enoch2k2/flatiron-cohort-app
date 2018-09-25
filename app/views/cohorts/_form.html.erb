@@ -7,15 +7,15 @@
   </div>
 
   <div class="field form-group">
-    <%= f.label :start_date %><br />
-    <%= f.date_field :start_date, autofocus: true, autocomplete: "off", class: "form-control" %>
-    <%= display_object_field_errors(cohort, :start_date) %>
-  </div>
-
-  <div class="field form-group">
     <%= f.label :batch_id %><br />
     <%= f.text_field :batch_id, autofocus: true, autocomplete: "off", class: "form-control" %>
     <%= display_object_field_errors(cohort, :batch_id) %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :start_date %><br />
+    <%= f.date_field :start_date, autofocus: true, autocomplete: "off", class: "form-control" %>
+    <%= display_object_field_errors(cohort, :start_date) %>
   </div>
 
   <div class="field form-group">
