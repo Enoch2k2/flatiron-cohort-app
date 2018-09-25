@@ -17,7 +17,7 @@
       <tr>
         <th scope="row"><%= i %></th>
         <td><%= user.student? ? (link_to user.full_name, admin_student_path(user)) : user.full_name %></td>
-        <td><%= user.learn_profile ? (link_to user.learn_profile, target: :_blank { image_tag "learn_image.png", class: "img-sm", width: "32px", height: "32px" }) : "" %> <%= user.github_username ? (link_to "https://github.com/#{user.github_username}?tab=repositories", target: :_blank { image_tag "GitHub-Mark-32px.png" }) : "" %></td>
+        <td><%= user.learn_profile ? (link_to user.learn_profile, target: :_blank { image_tag "learn_image.png", class: "img-sm", width: "32px", height: "32px" }) : "" %> <%= user.github_username ? (link_to "https://github.com/#{user.github_username}?tab=repositories", target: :_blank { image_tag "GitHub-Mark-32px.png" }) : "" %> <%= user.github_username ? (link_to "https://instruction.learn.co/staff/students/#{user.github_username}", target: :_blank { image_tag "instructor-app-icon.png",  class: "img-sm", width: "32px", height: "32px" }) : "" %></td>
         <td><%= user.roles.map{|u| u.name}.join(", ") %></td>
         <td><%= user.current_cohort ? (link_to user.current_cohort.name, admin_cohort_path(user.current_cohort)) : "Not assigned" %></td>
         <td><%= link_to "Edit", edit_admin_user_path(user) %>, <%= link_to "Delete", admin_user_path(user), method: "delete" %></td>

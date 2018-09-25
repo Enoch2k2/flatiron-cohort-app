@@ -78,7 +78,7 @@ class User < ApplicationRecord
 
   private
     def check_github
-      if self.github_username.blank?
+      if self.github_username.blank? || self.github_username.nil?
         self.github_username = nil
       end
     end

@@ -1,6 +1,6 @@
 <h3 class="student-show-link"><%= link_to "<< Back", user_cohort_path(@user, @cohort) %></h3>
 <h1><%= @student.full_name %></h1>
-<h3 class="student-show-link"><%= @student.learn_profile ? (link_to @student.learn_profile, target: :_blank { image_tag "learn_image.png", class: "img-sm", width: "32px", height: "32px" }) : "" %> <%= @student.github_username ? (link_to "https://github.com/#{@student.github_username}?tab=repositories", target: :_blank { image_tag "GitHub-Mark-32px.png" }) : "" %></h3>
+<h3 class="student-show-link"><%= @student.learn_profile ? (link_to @student.learn_profile, target: :_blank { image_tag "learn_image.png", class: "img-sm", width: "32px", height: "32px" }) : "" %> <%= @student.github_username ? (link_to "https://github.com/#{@student.github_username}?tab=repositories", target: :_blank { image_tag "GitHub-Mark-32px.png" }) : "" %> <%= @student.github_username ? (link_to "https://instruction.learn.co/staff/students/#{@student.github_username}", target: :_blank { image_tag "instructor-app-icon.png",  class: "img-sm", width: "32px", height: "32px" }) : "" %></h3>
 <div><%= link_to "Edit", user_cohort_edit_student_path(@user, @cohort, @student) %></div>
 <br/>
 <table class="table table-striped">
@@ -15,7 +15,6 @@
       <th scope="col" class="student-show-text-small">Behind Schedule?</th>
       <th scope="col" class="student-show-text-small">Knowledge Check</th>
       <th scope="col" class="student-show-text-small">Note</th>
-      <th scope="col" class="student-show-text-small">Doc</th>
       <th scope="col" class="student-show-text-small">Instructor App</th>
       <th scope="col" class="student-show-text-small">Delete</th>
     </tr>
@@ -32,7 +31,6 @@
         <td scope="col" class="student-show-text-small"><%= meeting.behind_schedule ? 'Yes' : 'No' %></td>
         <td scope="col" class="student-show-text-small"><%= meeting.knowledge_check %></td>
         <td scope="col" class="student-show-text-small"><%= meeting.note %></td>
-        <td scope="col" class="student-show-text-small"><%= meeting.added_to_doc? ? "Added" : link_to("Add To Docs", user_cohort_add_student_meetings_to_doc_path(@user, @cohort, @student, meeting)) %></td>
         <td scope="col" class="student-show-text-small"><%= meeting.added_to_instructor_app? ? "Added" : link_to("Add To Instructor App", user_cohort_add_student_meetings_to_instructor_app_path(@user, @cohort, @student, meeting)) %></td>
         <td scope="col" class="student-show-text-small"><%= link_to("Delete", user_cohort_delete_meeting_path(@user, @cohort, @student, meeting)) %></td>
       </tr>
