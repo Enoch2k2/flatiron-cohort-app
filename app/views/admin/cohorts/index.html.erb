@@ -7,6 +7,7 @@
       <th scope="col">#</th>
       <th scope="col">Name</th>
       <th scope="col">Instructor</th>
+      <th scope="col">Learn Batch</th>
       <th scope="col">Start Date</th>
       <th scope="col">End Date</th>
       <th scope="col">Edit</th>
@@ -19,6 +20,7 @@
         <th scope="row"><%= i %></th>
         <td class="cohort-link"><%= link_to cohort.name, admin_cohort_path(cohort) %></td>
         <td><%= cohort.instructor.full_name %></td>
+        <td><%= cohort.batch_id ? (link_to cohort.batch_id, "https://learn.co/batches/#{cohort.batch_id}", target: :_blank) : "" %></td>
         <td><%= cohort.start_date %></td>
         <td><%= cohort.end_date %></td>
         <td><%= link_to "Edit", edit_admin_cohort_path(cohort) %></td>

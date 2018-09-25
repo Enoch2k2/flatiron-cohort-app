@@ -10,6 +10,8 @@
   </div>
   <div class="col-md-10">
     <h1><%= @cohort.name %></h1>
+    <h4><%= @cohort.batch_id ? (link_to "Learn Batch: #{@cohort.batch_id}", "https://learn.co/batches/#{@cohort.batch_id}", target: :_blank) : "" %></h4>
+    <h3>Cohort Lead: <%= @cohort.instructor.full_name %></h3>
     <br/>
     <table class="table table-striped">
       <thead class="thead-dark">
