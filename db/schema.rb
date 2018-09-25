@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_21_162319) do
+ActiveRecord::Schema.define(version: 2018_09_25_163101) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,7 +36,6 @@ ActiveRecord::Schema.define(version: 2018_09_21_162319) do
     t.string "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "added_to_doc?"
     t.boolean "added_to_instructor_app?"
     t.index ["user_id"], name: "index_meetings_on_user_id"
   end
@@ -52,8 +51,8 @@ ActiveRecord::Schema.define(version: 2018_09_21_162319) do
     t.bigint "cohort_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.date "added_on"
-    t.date "joined_on"
+    t.date "left_at"
+    t.date "joined_at"
     t.index ["cohort_id"], name: "index_student_cohorts_on_cohort_id"
     t.index ["user_id"], name: "index_student_cohorts_on_user_id"
   end
