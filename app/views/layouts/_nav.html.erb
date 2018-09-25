@@ -18,7 +18,7 @@
       </a>
       <div class="dropdown-menu" aria-labelledby="instructor-dropdown">
         <%= link_to "Cohorts", user_cohorts_path(current_user), class: "dropdown-item" %>
-        <%= link_to "Search Students", "#", class: "dropdown-item" %>
+        <%= link_to "Search Students", "#", class: "dropdown-item", hidden: true %>
       </div>
     </li>
     <% end %>
