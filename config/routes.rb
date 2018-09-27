@@ -16,7 +16,6 @@ Rails.application.routes.draw do
       get '/students/:id/edit', to: 'students#edit', as: 'edit_student'
       patch '/students/:id', to: 'students#update', as: 'student_update'
       post '/students/:student_id/meetings', to: 'meetings#create', as: 'student_meetings'
-      get '/students/:student_id/meetings/:id/add_to_doc', to: 'meetings#add_to_doc', as: 'add_student_meetings_to_doc'
       get '/students/:student_id/meetings/:id/add_to_instructor_app', to: 'meetings#add_to_instructor_app', as: 'add_student_meetings_to_instructor_app'
       get '/students/:student_id/meetings/:id/destroy', to: 'meetings#destroy', as: 'delete_meeting'
     end

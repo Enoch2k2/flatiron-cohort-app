@@ -17,14 +17,6 @@ class MeetingsController < ApplicationController
     end
   end
 
-  def add_to_doc
-    if @meeting.update(added_to_doc?: true)
-      redirect_to user_cohort_student_path(@user, @cohort, @student)
-    else
-      redirect_to user_cohort_student_path(@user, @cohort, @student)
-    end
-  end
-
   def add_to_instructor_app
     if @meeting.update(added_to_instructor_app?: true)
       redirect_to user_cohort_student_path(@user, @cohort, @student)
