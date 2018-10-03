@@ -48,9 +48,7 @@ class User < ApplicationRecord
   end
 
   def total_lessons_completed
-    total = 0
-    meetings.each{|m| total += m.completed_lessons}
-    total
+    self.last_meeting.completed_lessons
   end
 
   def current_cohort_attributes=(id)
@@ -70,6 +68,14 @@ class User < ApplicationRecord
       self.student_cohorts.find_or_create_by(cohort_id: self.current_cohort_id).update(joined_at: Date.today)
     end
 
+  end
+
+  def last_meeting
+    meetings.sort_by{|m| m.date}.last
+  end
+
+  def current_lesson
+    self.last_meeting.current_lesson
   end
 
   def current_cohort_attributes
