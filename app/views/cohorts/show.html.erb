@@ -35,7 +35,7 @@
             <td><%= student.slack_username %></td>
             <td class="cohort-link"><%= student.learn_profile ? (link_to student.learn_profile, target: :_blank { image_tag "learn_image.png", class: "img-sm", width: "32px", height: "32px" }) : "" %></td>
             <td class="cohort-link"> <%= student.github_username ? (link_to "https://instruction.learn.co/staff/students/#{student.github_username}", target: :_blank { image_tag "instructor-app-icon.png",  class: "img-sm", width: "32px", height: "32px" }) : "" %></td>
-            <td><%= student.total_lessons_completed %></td>
+            <td><%= student.meetings.length > 0 ? student.total_lessons_completed : 0 %></td>
             <td><%= student.meetings.length > 0 ? student.current_lesson : "N/A" %></td>
           </tr>
         <% end %>
